@@ -15,28 +15,7 @@ import (
 )
 
 var state string = "spotify_state"
-var scope string = "user-top-read"
 
-
-
-func HandleLogin(w http.ResponseWriter, r *http.Request) {
-	godotenv.Load()
-	baseUrl := "https://accounts.spotify.com/authorize"
-	client_id := os.Getenv("SPOTIFY_ID")
-	redirect_uri := os.Getenv("REDIRECT_URI")
-
-	qurl, _ := url.Parse(baseUrl)
-
-	query := url.Values{}
-	query.Set("response_type", "code")
-	query.Set("client_id", client_id)
-	query.Set("scope", scope)
-	query.Set("redirect_uri", redirect_uri)
-	query.Set("state", state)
-	qurl.RawQuery = query.Encode()
-
-	http.Redirect(w, r, qurl.String(), http.StatusTemporaryRedirect)
-}
 
 func HandleCallback(w http.ResponseWriter, r *http.Request) {
 	params := r.URL.Query()
@@ -58,10 +37,6 @@ func HandleCallback(w http.ResponseWriter, r *http.Request) {
 	frontendUrl := "http://localhost:5173/dashboard"
 	redirectUrl := fmt.Sprintf("%s?access_token=%s", frontendUrl, resp.AccessToken)
 	http.Redirect(w, r, redirectUrl, http.StatusFound)
-}
-
-func GetTopItems(w http.ResponseWriter, r *http.Request) {
-
 }
 
 func exchangeCode(code string) models.TokenResponse{

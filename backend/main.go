@@ -16,9 +16,7 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 	r := mux.NewRouter()
-	r.HandleFunc("/login", handlers.HandleLogin)
 	r.HandleFunc("/callback", handlers.HandleCallback)
-	r.HandleFunc("/top", handlers.GetTopItems)
 
 	fmt.Println("Server started on port :8000")
 
