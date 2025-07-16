@@ -10,7 +10,6 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/contact" element={<h1>Contact Page</h1>} />
     </Routes>
   )
 }

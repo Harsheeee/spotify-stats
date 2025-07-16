@@ -20,8 +20,8 @@ func main() {
 	r.HandleFunc("/callback", handlers.HandleCallback)
 	r.HandleFunc("/top", handlers.GetTopItems)
 
-	fmt.Println("Server started on port :8888")
+	fmt.Println("Server started on port :8000")
 
-	http.ListenAndServe("127.0.0.1:8888", r)
+	http.ListenAndServe("127.0.0.1:8000", r)
 
 }
